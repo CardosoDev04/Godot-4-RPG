@@ -1,8 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://bjfg1p1p66mmo"]
+[gd_scene load_steps=16 format=3 uid="uid://bjfg1p1p66mmo"]
 
-[ext_resource type="Script" path="res://scenes/player/scripts/player.gd" id="1_4bj45"]
+[ext_resource type="Script" path="res://scripts/player/player.gd" id="1_4bj45"]
 [ext_resource type="Texture2D" uid="uid://57bvu0mwy02m" path="res://assets/player/player_idle.png" id="1_4xdxe"]
 [ext_resource type="Texture2D" uid="uid://hhj3vut4lqel" path="res://assets/player/player_movement.png" id="3_gtyed"]
+[ext_resource type="Script" path="res://scripts/player/player_state_machine.gd" id="4_u0hvm"]
+[ext_resource type="Script" path="res://scripts/player/states/state_idle.gd" id="5_404ld"]
+[ext_resource type="Script" path="res://scripts/player/states/state_walk.gd" id="6_gkv1p"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fri4t"]
 radius = 16.0
@@ -170,3 +173,12 @@ texture_filter = 1
 texture = ExtResource("3_gtyed")
 hframes = 4
 vframes = 4
+
+[node name="State Machine" type="Node" parent="."]
+script = ExtResource("4_u0hvm")
+
+[node name="Idle" type="Node" parent="State Machine"]
+script = ExtResource("5_404ld")
+
+[node name="Walk" type="Node" parent="State Machine"]
+script = ExtResource("6_gkv1p")
