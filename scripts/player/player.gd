@@ -17,8 +17,11 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	_set_active_sprite(state_machine.current_state.state_name)
-	moving_direction.x = Input.get_action_strength("right") - Input.get_action_strength("left")
-	moving_direction.y = Input.get_action_strength("down") - Input.get_action_strength("up")
+	moving_direction = Vector2(
+		Input.get_axis("left","right"),
+		Input.get_axis("up","down")
+	)
+	moving_direction = moving_direction.normalized()
 	pass
 
 func _physics_process(delta):
